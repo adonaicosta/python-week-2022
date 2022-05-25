@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+#on:
+#  push:
+#    branches: [ main ]
+#  pull_request:
+#    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+      docker login -u ${{ DOCKER_USERNAME }} -p ${{ DOCKER_PASSWORD }}
+      cd images
+      docker build . --file Dockerfile --tag adonaicosta/pombo-web:$(date +%s)
+      docker push adonaicosta/pombo-web:$(date +%s)
