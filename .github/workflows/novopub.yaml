@@ -7,9 +7,6 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
-  sha: $(echo $GITHUB_SHA)
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,5 +28,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: adonaicosta/pombo-web2:latest,adonaicosta/pombo-web2:${{ env.sha }}
+          tags: adonaicosta/pombo-web2:latest,adonaicosta/pombo-web2:${{ github.sha }}
           file: images/Dockerfile
