@@ -11,12 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-
-      - name: variaveis
-        id: vars
-        shell: bash
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-
+    
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -33,5 +28,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: adonaicosta/pombo-web:latest,adonaicosta/pombo-web:${{ steps.vars.output.sha_short }}
+          tags: adonaicosta/pombo-web:latest,adonaicosta/pombo-web:$GITHUB_SHA
           file: images/Dockerfile
