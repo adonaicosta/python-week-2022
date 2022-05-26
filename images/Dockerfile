@@ -1,3 +1,3 @@
 FROM nginx
-ADD index.hml /usr/share/nginx/html/
+ADD images/index.hml /usr/share/nginx/html/
 
